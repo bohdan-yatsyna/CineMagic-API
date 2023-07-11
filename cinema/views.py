@@ -14,18 +14,18 @@ from cinema.models import Genre, Actor, CinemaHall, Movie, MovieSession, Order
 from cinema.permissions import IsAdminOrIfAuthenticatedReadOnly
 
 from cinema.serializers import (
-    GenreSerializer,
     ActorSerializer,
     CinemaHallSerializer,
+    GenreSerializer,
+    MovieDetailSerializer,
+    MovieImageSerializer,
+    MovieListSerializer,
     MovieSerializer,
     MovieSessionSerializer,
     MovieSessionListSerializer,
-    MovieDetailSerializer,
     MovieSessionDetailSerializer,
-    MovieListSerializer,
     OrderSerializer,
     OrderListSerializer,
-    MovieImageSerializer,
 )
 
 
@@ -118,13 +118,11 @@ class MovieViewSet(
         movie = self.get_object()
         serializer = self.get_serializer(movie, data=request.data)
 
-        if serializer.is_valid():
+        if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
 
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    # Only for documentation purposes
+    # Only for documentation purposes (Swagger)
     @extend_schema(
         parameters=[
             OpenApiParameter(
@@ -186,18 +184,18 @@ class MovieSessionViewSet(viewsets.ModelViewSet):
 
         return MovieSessionSerializer
 
-    # Only for documentation purposes
+    # Only for documentation purposes (Swagger)
     @extend_schema(
         parameters=[
             OpenApiParameter(
                 "date",
                 type=OpenApiTypes.DATE,
-                description="Filter by date (ex. ?date=2024-10-08)",
+                description="Filter by date (ex. ?date=2022-10-13)",
             ),
             OpenApiParameter(
                 "movie",
                 type=OpenApiTypes.INT,
-                description="Filter by movie id (ex. ?movie=1)",
+                description="Filter by movie id (ex. ?movie=3)",
             ),
         ]
     )
