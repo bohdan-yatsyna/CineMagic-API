@@ -9,15 +9,15 @@ from django.utils.text import slugify
 
 class CinemaHall(models.Model):
     name = models.CharField(max_length=255)
-    rows = models.IntegerField()
-    seats_in_row = models.IntegerField()
+    rows = models.PositiveSmallIntegerField()
+    seats_in_row = models.PositiveSmallIntegerField()
 
     @property
     def capacity(self) -> int:
         return self.rows * self.seats_in_row
 
     def __str__(self):
-        return self.name
+        return f"{self.name}, capacity: {self.capacity} seats"
 
 
 class Genre(models.Model):
@@ -31,12 +31,12 @@ class Actor(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
 
-    def __str__(self):
-        return self.first_name + " " + self.last_name
-
     @property
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
+
+    def __str__(self):
+        return self.full_name
 
 
 def movie_image_file_path(instance, filename):
@@ -58,7 +58,7 @@ class Movie(models.Model):
         ordering = ["title"]
 
     def __str__(self):
-        return self.title
+        return f"{self.title}, duration: {self.duration} minutes"
 
 
 class MovieSession(models.Model):
@@ -142,8 +142,9 @@ class Ticket(models.Model):
         )
 
     def __str__(self):
-        return f"{str(self.movie_session)} " \
-               f"(row: {self.row}, seat: {self.seat})"
+        return (
+            f"{str(self.movie_session)} (row: {self.row}, seat: {self.seat})"
+        )
 
     class Meta:
         unique_together = ("movie_session", "row", "seat")
