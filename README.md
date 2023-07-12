@@ -12,13 +12,13 @@ cd cinema-service-API
 #### 2. Create and activate virtual environment with requirements install:
 🖥 Windows:
 ```shell
-  venv\Scripts\activate
-  pip install -r requirements.txt
+venv\Scripts\activate
+pip install -r requirements.txt
 ```
 💻 Linux/MacOS:
 ```shell
-  source venv/bin/activate
-  pip install -r requirements.txt
+source venv/bin/activate
+pip install -r requirements.txt
 ```
 #### 3. 🗝 Set up environment variables (using .env):
 - Create an empty .env file in the root folder of the project.
@@ -28,7 +28,7 @@ cd cinema-service-API
 #### 4. 🐳 Run it with DOCKER:
 - DOCKER should be installed and opened.
 ```shell
-  docker-compose up --build
+docker-compose up --build
 ```
 - And open in your browser "http://127.0.0.1:8000/"
 
