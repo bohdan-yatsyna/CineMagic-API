@@ -13,17 +13,15 @@ cd cinema-service-API
 🖥 Windows:
 ```shell
 venv\Scripts\activate
-pip install -r requirements.txt
 ```
 💻 Linux/MacOS:
 ```shell
 source venv/bin/activate
-pip install -r requirements.txt
 ```
 #### 3. 🗝 Set up environment variables (using .env):
 - Create an empty .env file in the root folder of the project.
 - Copy the entire content of the .env.sample to your .env file.
-- Modify the placeholders in the .env file with your preferable environment variables (without using of "< >").
+- Modify the placeholders in the .env file with your preferable environment variables.
 
 #### 4. 🐳 Run it with DOCKER:
 - DOCKER should be installed and opened.
