@@ -12,10 +12,12 @@ cd cinema-service-API
 #### 2. Create and activate virtual environment with requirements install:
 🖥 Windows:
 ```shell
+python -m venv venv
 venv\Scripts\activate
 ```
 💻 Linux/MacOS:
 ```shell
+python -m venv venv
 source venv/bin/activate
 ```
 #### 3. 🗝 Set up environment variables (using .env):
